@@ -69,7 +69,7 @@ const Note = ({ note, notes, setNotes }) => {
         >
           {/* ************************************* */}
           <div
-            className={`p-3 w-full h-full overflow-auto whitespace-pre-wrap text-sm focus:outline-none`}
+            className={`p-3 w-full h-full overflow-auto whitespace-pre text-sm focus:outline-none`}
             ref={noteRef}
             contentEditable={true}
             onKeyUp={handleKeyUp}
