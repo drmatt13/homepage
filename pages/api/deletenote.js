@@ -4,13 +4,7 @@ import Note from "../../models/Note";
 
 export default connectDB(async (req, res) => {
   try {
-    let note = await Note.findOne();
-    if (!note) {
-      // create note
-      note = await Note.create({
-        text: `# Welcome to your new Markdown Previewer!`,
-      });
-    }
+    const note = await Note.findByIdAndDelete(req.body._id);
     return res.status(200).json({ success: true, note });
   } catch (error) {
     console.error(error);

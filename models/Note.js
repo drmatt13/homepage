@@ -5,6 +5,12 @@ const Schema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
+    default: `hello world`,
+  },
+  color: {
+    type: String,
+    required: true,
+    default: '{"r": 254, "g": 240, "b": 138, "a": 0.8}',
   },
   createdAt: {
     type: Date,

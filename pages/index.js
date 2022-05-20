@@ -1,50 +1,38 @@
 import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import items from "../data.js";
 import axios from "axios";
+import Note from "../components/Note";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [saving, setSaving] = useState(false);
   const searchRef = useRef();
-  const noteRef = useRef();
-  const keyupTimeoutRef = useRef();
+  const [loading, setLoading] = useState(true);
+  const [creatingNote, setCreatingNote] = useState(false);
+  const [notes, setNotes] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     window.location.href = `https://www.google.com/search?q=${search}`;
   };
 
-  const updateNote = async () => {
-    setSaving(true);
-    // add linebreaks to note
-    const text = noteRef.current.innerText.replace(/\n/g, "<br>");
-    const res = await axios.post("/api/updatenote", {
-      text,
-    });
-    setSaving(false);
-  };
-
-  const handleKeyUp = () => {
-    // updateNote();
-    clearTimeout(keyupTimeoutRef.current);
-    keyupTimeoutRef.current = setTimeout(() => {
-      updateNote();
-    }, 2000);
-  };
-
-  const loadNote = async () => {
-    const res = await axios.get("/api/getnote");
-    noteRef.current.innerHTML = res.data.note.text;
-    // console.log(noteRef.current);
+  const getNotes = async () => {
+    const res = await axios.get("/api/getnotes");
+    setNotes(res.data.notes);
+    console.log(res.data.notes);
     setLoading(false);
+  };
+
+  const createNote = async () => {
+    setCreatingNote(true);
+    const res = await axios.get("/api/createnote");
+    setNotes([...notes, res.data.note]);
+    setCreatingNote(false);
   };
 
   useEffect(() => {
     searchRef.current.focus();
-    loadNote();
+    getNotes();
   }, []);
 
   return (
@@ -77,7 +65,7 @@ export default function Home() {
                 <div className="flex flex-col items-start leading-[1.6] text text-sm truncate">
                   {item.list.map((link, j) => (
                     <div key={j}>
-                      <Link href={`${link[1]}`}>
+                      <a href={`${link[1]}`}>
                         <div className="hover:cursor-pointer hover:underline truncate">
                           <span>
                             <img
@@ -88,38 +76,36 @@ export default function Home() {
                           </span>
                           <span>{link[0]}</span>
                         </div>
-                      </Link>
+                      </a>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
           ))}
-          <div className="relative flex h-[9.25rem] max-h-[9.25rem] bg-yellow-200/80 rounded-md shadow-lg overflow-hidden">
-            {loading && (
-              <>
-                <div className="text-sm absolute top-0 left-0 h-full w-full flex justify-center items-center pointer-events-none">
-                  loading
+          {!loading && (
+            <>
+              {notes &&
+                notes.map((note) => (
+                  <Note
+                    note={note}
+                    notes={notes}
+                    setNotes={setNotes}
+                    key={note._id}
+                  />
+                ))}
+              {!creatingNote && (
+                <div className="w-full h-[9.25rem] max-h-[9.25rem] flex justify-center items-center animate-fade-in">
+                  <div
+                    onClick={createNote}
+                    className="h-10 w-10 rounded-full bg-white/70 flex justify-center items-center cursor-pointer hover:scale-105 hover:bg-white/75 transition-all"
+                  >
+                    <i className="fa-solid fa-plus text-sm h-full w-full flex justify-center items-center" />
+                  </div>
                 </div>
-              </>
-            )}
-            <div
-              className={`${
-                loading ? "hidden" : ""
-              }  p-3 w-full h-full overflow-auto whitespace-nowrap text-sm focus:outline-none`}
-              ref={noteRef}
-              contentEditable={loading ? false : true}
-              onKeyUp={handleKeyUp}
-            />
-
-            {saving && (
-              <div
-                className={`border border-black absolute bottom-1 right-1 text-sm px-1 py-0.5 rounded flex pointer-events-none bg-black/20`}
-              >
-                saving
-              </div>
-            )}
-          </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
