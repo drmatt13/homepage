@@ -19,7 +19,6 @@ export default function Home() {
   const getNotes = async () => {
     const res = await axios.get("/api/getnotes");
     setNotes(res.data.notes);
-    console.log(res.data.notes);
     setLoading(false);
   };
 
