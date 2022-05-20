@@ -118,11 +118,20 @@ export default function Home() {
                   <div className="text-center mb-2 text-lg font-bold">
                     {item.title}
                   </div>
-                  <div className="flex flex-col items-start text-sm">
+                  <div className="flex flex-col items-start text-sm truncate">
                     {item.list.map((link, j) => (
                       <>
                         <Link href={`${link[1]}`}>
-                          <div className="link">{link[0]}</div>
+                          <div className="link truncate">
+                            <span>
+                              <img
+                                className="mt-1 mr-1 float-left"
+                                src={`http://www.google.com/s2/favicons?domain=${link[1]}`}
+                                alt="favicon"
+                              />
+                            </span>
+                            <span>{link[0]}</span>
+                          </div>
                         </Link>
                       </>
                     ))}
