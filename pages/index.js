@@ -19,7 +19,8 @@ export default function Home() {
 
   const updateNote = async () => {
     setSaving(true);
-    const text = noteRef.current.innerText.replace(/\\n/g, "<br>\n");
+    // add linebreaks to note
+    const text = noteRef.current.innerText.replace(/\n/g, "<br>");
     const res = await axios.post("/api/updatenote", {
       text,
     });
@@ -37,7 +38,7 @@ export default function Home() {
   const loadNote = async () => {
     const res = await axios.get("/api/getnote");
     noteRef.current.innerHTML = res.data.note.text;
-    console.log(noteRef.current);
+    // console.log(noteRef.current);
     setLoading(false);
   };
 

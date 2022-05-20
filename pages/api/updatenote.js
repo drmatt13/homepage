@@ -7,7 +7,7 @@ export default connectDB(async (req, res) => {
   try {
     // update note
     const note = await Note.findOneAndUpdate({}, { text }, { new: true });
-    console.log(note);
+    // console.log(note);
     return res.status(200).json({ success: true, note });
   } catch (error) {
     console.error(error);
