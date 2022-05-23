@@ -1,66 +1,63 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { RgbaColorPicker } from "react-colorful";
 import axios from "axios";
 
 const Note = ({ note, notes, setNotes }) => {
   const [saving, setSaving] = useState(false);
+  const [prevtext, setPrevtext] = useState(note.text);
   const [color, setColor] = useState(JSON.parse(note.color));
+  const [prevcolor, setPrevcolor] = useState(color);
+  const blurRef = useRef(true);
   const [palette, setPalette] = useState(false);
   const noteRef = useRef();
-  const keyupTimeoutRef = useRef();
 
-  const updateText = async () => {
+  const updateNote = useCallback(async () => {
+    if (prevtext === noteRef.current.innerHTML.trim() && prevcolor === color)
+      return;
     setSaving(true);
     const text = noteRef.current.innerHTML.trim();
-    const res = await axios.post("/api/updatenote", {
+    await axios.post("/api/updatenote", {
       _id: note._id,
+      color: JSON.stringify(color),
       text,
     });
     setSaving(false);
-  };
+    setPrevtext(text);
+    setPrevcolor(color);
+  }, [color, note, prevcolor, prevtext]);
 
-  const deleteNote = async () => {
-    const res = await axios.post("/api/deletenote", {
+  const deleteNote = useCallback(async () => {
+    await axios.post("/api/deletenote", {
       _id: note._id,
     });
     setNotes(notes.filter((n) => n._id !== note._id));
+  }, [notes, note]);
+
+  const disableBlur = () => {
+    blurRef.current = false;
   };
 
-  const updateColor = async () => {
-    setSaving(true);
-    const res = await axios.post("/api/updatenote", {
-      _id: note._id,
-      color: JSON.stringify(color),
-    });
-    setSaving(false);
+  const onBlur = async (e) => {
+    if (blurRef.current) updateNote();
+    disableBlur();
   };
 
-  const handleColorChange = () => {
-    clearTimeout(keyupTimeoutRef.current);
-    keyupTimeoutRef.current = setTimeout(() => {
-      updateColor();
-    }, 1250);
-  };
-
-  const handleKeyUp = () => {
-    clearTimeout(keyupTimeoutRef.current);
-    keyupTimeoutRef.current = setTimeout(() => {
-      updateText();
-    }, 1250);
+  const exitPalette = () => {
+    setPalette(false);
+    updateNote();
   };
 
   useEffect(() => {
     noteRef.current.innerHTML = note.text;
   }, []);
 
-  useEffect(() => {
-    if (!palette) return;
-    handleColorChange();
-  }, [color, palette]);
-
   return (
     <>
-      <div className="relative group animate-fade-in">
+      <div
+        className="relative group animate-fade-in"
+        onBlur={onBlur}
+        onFocus={() => (blurRef.current = true)}
+      >
         <div
           style={{
             backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}`,
@@ -72,7 +69,6 @@ const Note = ({ note, notes, setNotes }) => {
             className={`p-3 w-full h-full overflow-auto whitespace-pre text-sm focus:outline-none`}
             ref={noteRef}
             contentEditable={true}
-            onKeyUp={handleKeyUp}
           />
           {saving && (
             <div
@@ -82,31 +78,40 @@ const Note = ({ note, notes, setNotes }) => {
             </div>
           )}
         </div>
-        <div
-          className={`absolute flex flex-row-reverse top-0 right-0 w-full h-6 -translate-y-1/2 opacity-0 pointer-events-none transition-opacity duration-200 group-hover:opacity-100 group-hover:pointer-events-auto`}
-        >
+        {/* ************************ */}
+        <div className="absolute w-full h-2 -top-2 left-0 group">
           <div
-            onClick={deleteNote}
-            className="ml-1 h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-red-400/90 transition-color ease-out duration-200"
+            className={`absolute flex flex-row-reverse top-0 -right-1 w-full h-6 opacity-0 pointer-events-none transition-opacity duration-200 group-hover:opacity-100`}
           >
-            <i className="fa-solid fa-x text-[.5rem] h-full w-full flex justify-center items-center" />
-          </div>
-          <div
-            onClick={() => setPalette(true)}
-            className="h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-sky-400/90 transition-color ease-out duration-200"
-          >
-            <i className="fa-solid fa-brush text-[.5rem] h-full w-full flex justify-center items-center" />
+            <div
+              onMouseDown={disableBlur}
+              onMouseUp={deleteNote}
+              className="ml-1 h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-red-400/90 transition-color ease-out duration-200 group-hover:pointer-events-auto"
+            >
+              <i className="fa-solid fa-x text-[.5rem] h-full w-full flex justify-center items-center" />
+            </div>
+            <div
+              onMouseDown={disableBlur}
+              onMouseUp={() => setPalette(true)}
+              className="h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-sky-400/90 transition-color ease-out duration-200 group-hover:pointer-events-auto"
+            >
+              <i className="fa-solid fa-brush text-[.5rem] h-full w-full flex justify-center items-center" />
+            </div>
           </div>
         </div>
+
+        {/* ************* */}
       </div>
       {palette && (
-        <dialog className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center bg-black/20 z-10">
+        <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-black/20 z-10">
           <div
             className="absolute top-0 left-0 h-full w-full"
-            onClick={() => setPalette(false)}
+            onClick={exitPalette}
           />
-          <RgbaColorPicker color={color} onChange={setColor} />
-        </dialog>
+          <div onMouseDown={() => (blurRef.current = true)}>
+            <RgbaColorPicker color={color} onChange={setColor} />
+          </div>
+        </div>
       )}
     </>
   );
