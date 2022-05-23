@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const Schema = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
-    // default: `hello world`,
+    // required: true,
+    default: "",
   },
   color: {
     type: String,
