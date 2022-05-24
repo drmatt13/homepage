@@ -20,6 +20,7 @@ export default [
   {
     title: "Money",
     list: [
+      ["Amazon", "https://www.amazon.com/"],
       ["Santander", "https://www.santander.com/en/home"],
       ["Capital One", "https://www.capitalone.com/"],
       ["Chase", "https://www.chase.com/"],
@@ -76,6 +77,19 @@ export default [
   {
     title: "News",
     list: [
+      ["4chan", "https://boards.4chan.org/pol/"],
+      ["Inforwars", "https://infowars.com/"],
+      ["Washington Examiner", "https://washingtonexaminer.com/"],
+      ["Yahoo", "https://yahoo.com/"],
+    ],
+  },
+  {
+    title: "Test",
+    list: [
+      ["4chan", "https://boards.4chan.org/pol/"],
+      ["Inforwars", "https://infowars.com/"],
+      ["Washington Examiner", "https://washingtonexaminer.com/"],
+      ["Yahoo", "https://yahoo.com/"],
       ["4chan", "https://boards.4chan.org/pol/"],
       ["Inforwars", "https://infowars.com/"],
       ["Washington Examiner", "https://washingtonexaminer.com/"],

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Note = ({ note, notes, setNotes }) => {
   const [saving, setSaving] = useState(false);
-  const [prevtext, setPrevtext] = useState(note.text);
+  const [prevtext, setPrevtext] = useState("");
   const [color, setColor] = useState(JSON.parse(note.color));
   const [prevcolor, setPrevcolor] = useState(color);
   const blurRef = useRef(true);
@@ -12,14 +12,22 @@ const Note = ({ note, notes, setNotes }) => {
   const noteRef = useRef();
 
   const updateNote = useCallback(async () => {
-    if (prevtext === noteRef.current.innerHTML.trim() && prevcolor === color)
-      return;
+    // recursively get text from contenteditable div and preserve line breaks
+    let text = Array.from(noteRef.current.childNodes).reduce((acc, node) => {
+      if (node.nodeType === 3) {
+        return acc + node.textContent;
+      } else if (node.nodeType === 1) {
+        return acc + "\n" + node.textContent;
+      }
+      return acc;
+    }, "");
+    text = text.trim();
+    if (prevtext === text && prevcolor === color) return;
     setSaving(true);
-    const text = noteRef.current.innerHTML.trim();
     await axios.post("/api/updatenote", {
       _id: note._id,
       color: JSON.stringify(color),
-      text,
+      text: text,
     });
     setSaving(false);
     setPrevtext(text);
@@ -49,6 +57,7 @@ const Note = ({ note, notes, setNotes }) => {
 
   useEffect(() => {
     noteRef.current.innerHTML = note.text;
+    setPrevtext(noteRef.current.innerText.trim());
   }, []);
 
   return (
@@ -64,7 +73,6 @@ const Note = ({ note, notes, setNotes }) => {
           }}
           className="relative flex h-[9.25rem] max-h-[9.25rem] rounded-md shadow-lg overflow-hidden"
         >
-          {/* ************************************* */}
           <div
             className={`p-3 w-full h-full overflow-auto whitespace-pre text-sm focus:outline-none`}
             ref={noteRef}
@@ -78,7 +86,6 @@ const Note = ({ note, notes, setNotes }) => {
             </div>
           )}
         </div>
-        {/* ************************ */}
         <div className="absolute w-full h-2 -top-2 left-0 group">
           <div
             className={`absolute flex flex-row-reverse top-0 -right-1 w-full h-6 opacity-0 pointer-events-none transition-opacity duration-200 group-hover:opacity-100`}
@@ -93,9 +100,9 @@ const Note = ({ note, notes, setNotes }) => {
             <div
               onMouseDown={disableBlur}
               onMouseUp={() => setPalette(true)}
-              className="h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-sky-400/90 transition-color ease-out duration-200 group-hover:pointer-events-auto"
+              className="h-5 w-5 rounded-full bg-white/90 flex justify-center items-center cursor-pointer hover:bg-sky-300/90 transition-color ease-out duration-200 group-hover:pointer-events-auto"
             >
-              <i className="fa-solid fa-brush text-[.5rem] h-full w-full flex justify-center items-center" />
+              <i className="fa-solid fa-palette text-[.5rem] h-full w-full flex justify-center items-center" />
             </div>
           </div>
         </div>
@@ -103,15 +110,19 @@ const Note = ({ note, notes, setNotes }) => {
         {/* ************* */}
       </div>
       {palette && (
-        <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center bg-black/20 z-10">
-          <div
-            className="absolute top-0 left-0 h-full w-full"
-            onClick={exitPalette}
-          />
-          <div onMouseDown={() => (blurRef.current = true)}>
-            <RgbaColorPicker color={color} onChange={setColor} />
+        <>
+          <div className="absolute top-0 left-0 h-full w-full">
+            <div className="sticky top-0 bg-black/20 z-10 w-full h-screen flex justify-center items-center">
+              <div
+                className="absolute top-0 left-0 h-full w-full"
+                onClick={exitPalette}
+              />
+              <div onMouseDown={() => (blurRef.current = true)}>
+                <RgbaColorPicker color={color} onChange={setColor} />
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
