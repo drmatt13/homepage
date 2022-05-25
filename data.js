@@ -1,11 +1,12 @@
 export default [
   {
-    title: "coding",
+    title: "Coding",
     list: [
       ["Localhost", "http://localhost:3000"],
       ["Vercel", "https://vercel.com/dashboard"],
       ["Github", "https://github.com/"],
       ["Portfolio", "https://portfolio-min.vercel.app/"],
+      ["LeetCode", "https://leetcode.com/"],
     ],
   },
   {
@@ -41,12 +42,22 @@ export default [
     ],
   },
   {
+    title: "Google",
+    list: [
+      ["Search", "https://www.google.com/"],
+      ["Docs", "https://docs.google.com/"],
+      ["Sheets", "https://sheets.google.com/"],
+      ["Slides", "https://slides.google.com/"],
+    ],
+  },
+  {
     title: "Tools",
     list: [
-      ["Google Docs", "https://docs.google.com/"],
-      ["Gradients", "https://uigradients.com"],
+      ["QuillBot", "https://quillbot.com/"],
+      ["Desmos", "https://www.desmos.com/"],
       ["Box Shadows", "https://getcssscan.com/css-box-shadow-examples"],
       ["Diagram Maker", "https://app.diagrams.net/"],
+      ["Gradients", "https://uigradients.com"],
     ],
   },
   {
@@ -60,9 +71,11 @@ export default [
   {
     title: "Job Search",
     list: [
+      ["Boston Startups", "https://www.builtinboston.com/"],
       ["HandShake", "https://joinhandshake.com/"],
       ["LinkedIn", "https://www.linkedin.com/"],
       ["Upwork", "https://www.upwork.com/"],
+      ["Indeed", "https://www.indeed.com/"],
     ],
   },
   {
@@ -77,23 +90,13 @@ export default [
   {
     title: "News",
     list: [
-      ["4chan", "https://boards.4chan.org/pol/"],
+      ["Reddit", "https://www.reddit.com/"],
       ["Inforwars", "https://infowars.com/"],
+      ["New York Post", "https://nypost.com/"],
       ["Washington Examiner", "https://washingtonexaminer.com/"],
-      ["Yahoo", "https://yahoo.com/"],
-    ],
-  },
-  {
-    title: "Test",
-    list: [
       ["4chan", "https://boards.4chan.org/pol/"],
-      ["Inforwars", "https://infowars.com/"],
-      ["Washington Examiner", "https://washingtonexaminer.com/"],
       ["Yahoo", "https://yahoo.com/"],
-      ["4chan", "https://boards.4chan.org/pol/"],
-      ["Inforwars", "https://infowars.com/"],
-      ["Washington Examiner", "https://washingtonexaminer.com/"],
-      ["Yahoo", "https://yahoo.com/"],
+      ["RT", "https://www.rt.com/"],
     ],
   },
 ];
