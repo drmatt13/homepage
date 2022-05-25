@@ -63,18 +63,16 @@ const Note = ({ note, notes, setNotes }) => {
   return (
     <>
       <div
-        className="relative group animate-fade-in"
+        className="relative group flex animate-fade-in h-[9.5rem] max-h-[9.5rem] rounded-md shadow-lg"
         onBlur={onBlur}
         onFocus={() => (blurRef.current = true)}
+        style={{
+          backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}`,
+        }}
       >
-        <div
-          style={{
-            backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a}`,
-          }}
-          className="relative flex h-[9.25rem] max-h-[9.25rem] rounded-md shadow-lg overflow-hidden"
-        >
+        <div className="relative m-3 mb-1.5 mr-1.5 flex flex-1 overflow-auto">
           <div
-            className={`p-3 w-full h-full overflow-auto whitespace-pre text-sm focus:outline-none`}
+            className={`w-full h-full whitespace-pre text-sm focus:outline-none`}
             ref={noteRef}
             contentEditable={true}
           />
