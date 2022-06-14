@@ -6,16 +6,23 @@ export default [
       ["Vercel", "https://vercel.com/dashboard"],
       ["Github", "https://github.com/"],
       ["Portfolio", "https://portfolio-min.vercel.app/"],
-      ["LeetCode", "https://leetcode.com/"],
     ],
   },
   {
     title: "School",
     list: [
-      ["Udemy", "https://www.udemy.com/"],
-      ["mySNHU", "https://mysnhu.force.com/mysnhu/s/"],
+      ["SNHU Home", "https://mysnhu.force.com/mysnhu/s/"],
+      ["SNHU Email", "https://outlook.office.com/mail/"],
       ["DAT-375", "https://learn.snhu.edu/d2l/home/1071736"],
       ["IT-226", "https://learn.snhu.edu/d2l/home/1067966"],
+    ],
+  },
+  {
+    title: "Daily Practice",
+    list: [
+      ["Udemy", "https://www.udemy.com/"],
+      ["Coursera", "https://www.coursera.org/"],
+      ["Leetcode", "https://leetcode.com/"],
     ],
   },
   {
@@ -84,7 +91,9 @@ export default [
       ["SoundCloud", "https://soundcloud.com/"],
       ["Banned Video", "https://banned.video"],
       ["Bitchute", "https://www.bitchute.com/"],
-      ["youtube", "https://youtube.com"],
+      ["Youtube", "https://youtube.com"],
+      ["GoGoAnime", "https://www1.gogoanime.sk/"],
+      ["KimCartoon", "https://kimcartoon.li/"],
     ],
   },
   {
