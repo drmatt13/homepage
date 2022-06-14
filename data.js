@@ -17,14 +17,7 @@ export default [
       ["IT-226", "https://learn.snhu.edu/d2l/home/1067966"],
     ],
   },
-  {
-    title: "Daily Practice",
-    list: [
-      ["Udemy", "https://www.udemy.com/"],
-      ["Coursera", "https://www.coursera.org/"],
-      ["Leetcode", "https://leetcode.com/"],
-    ],
-  },
+
   {
     title: "Money",
     list: [
@@ -106,6 +99,14 @@ export default [
       ["4chan", "https://boards.4chan.org/pol/"],
       ["Yahoo", "https://yahoo.com/"],
       ["RT", "https://www.rt.com/"],
+    ],
+  },
+  {
+    title: "Daily Practice",
+    list: [
+      ["Udemy", "https://www.udemy.com/"],
+      ["Coursera", "https://www.coursera.org/"],
+      ["Leetcode", "https://leetcode.com/"],
     ],
   },
 ];
