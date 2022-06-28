@@ -13,8 +13,8 @@ export default [
     list: [
       ["SNHU Home", "https://mysnhu.force.com/mysnhu/s/"],
       ["SNHU Email", "https://outlook.office.com/mail/"],
-      ["DAT-375", "https://learn.snhu.edu/d2l/home/1071736"],
-      ["IT-226", "https://learn.snhu.edu/d2l/home/1067966"],
+      ["DAT-325", "https://learn.snhu.edu/d2l/home/1118007"],
+      ["DAT-430", "https://learn.snhu.edu/d2l/home/1118024"],
     ],
   },
 
@@ -44,7 +44,7 @@ export default [
   {
     title: "Google",
     list: [
-      ["Search", "https://www.google.com/"],
+      ["Gmail", "https://www.gmail.com/"],
       ["Docs", "https://docs.google.com/"],
       ["Sheets", "https://sheets.google.com/"],
       ["Slides", "https://slides.google.com/"],
@@ -102,11 +102,12 @@ export default [
     ],
   },
   {
-    title: "Daily Practice",
+    title: "Practice",
     list: [
       ["Udemy", "https://www.udemy.com/"],
       ["Coursera", "https://www.coursera.org/"],
       ["Leetcode", "https://leetcode.com/"],
+      ["JSFiddle", "https://jsfiddle.net/"],
     ],
   },
 ];
