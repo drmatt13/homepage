@@ -64,8 +64,11 @@ export default [
     title: "Social",
     list: [
       ["Banned Social", "https://banned-social2.vercel.app/"],
+      ["Discord", "https://discord.com/"],
       ["Instagram", "https://instagram.com/"],
       ["Facebook", "https://facebook.com/"],
+      ["Reddit", "https://reddit.com/"],
+      ["Twitter", "https://twitter.com/"],
     ],
   },
   {
@@ -92,11 +95,11 @@ export default [
   {
     title: "News",
     list: [
-      ["Reddit", "https://www.reddit.com/"],
+      ["MarketWatch", "https://www.marketwatch.com/"],
       ["Inforwars", "https://infowars.com/"],
       ["New York Post", "https://nypost.com/"],
       ["Washington Examiner", "https://washingtonexaminer.com/"],
-      ["4chan", "https://boards.4chan.org/pol/"],
+      ["4chan", "https://boards.4chan.org/pol/catalog"],
       ["Yahoo", "https://yahoo.com/"],
       ["RT", "https://www.rt.com/"],
     ],
