@@ -13,8 +13,7 @@ export default [
     list: [
       ["SNHU Home", "https://mysnhu.force.com/mysnhu/s/"],
       ["SNHU Email", "https://outlook.office.com/mail/"],
-      ["DAT-325", "https://learn.snhu.edu/d2l/home/1118007"],
-      ["DAT-430", "https://learn.snhu.edu/d2l/home/1118024"],
+      ["DAT-430", "https://learn.snhu.edu/d2l/home/1163878"],
     ],
   },
 
@@ -64,11 +63,11 @@ export default [
     title: "Social",
     list: [
       ["Banned Social", "https://banned-social2.vercel.app/"],
-      ["Discord", "https://discord.com/"],
-      ["Instagram", "https://instagram.com/"],
-      ["Facebook", "https://facebook.com/"],
+      ["Discord", "https://discord.com/app"],
       ["Reddit", "https://reddit.com/"],
       ["Twitter", "https://twitter.com/"],
+      ["Instagram", "https://instagram.com/"],
+      ["Facebook", "https://facebook.com/"],
     ],
   },
   {
