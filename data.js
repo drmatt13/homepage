@@ -53,7 +53,7 @@ export default [
     title: "Tools",
     list: [
       ["QuillBot", "https://quillbot.com/"],
-      ["Desmos", "https://www.desmos.com/"],
+      ["Desmos", "https://www.desmos.com/calculator"],
       ["Box Shadows", "https://getcssscan.com/css-box-shadow-examples"],
       ["Diagram Maker", "https://app.diagrams.net/"],
       ["Gradients", "https://uigradients.com"],
