@@ -1,19 +1,36 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
     title: "Coding",
     list: [
+      ["ChatGPT", "https://chat.openai.com/chat"],
       ["Localhost", "http://localhost:3000"],
       ["Vercel", "https://vercel.com/dashboard"],
-      ["Github", "https://github.com/"],
       ["Portfolio", "https://portfolio-min.vercel.app/"],
+      ["Github", "https://github.com/"],
     ],
   },
   {
-    title: "School",
+    title: "AWS",
     list: [
-      ["SNHU Home", "https://mysnhu.force.com/mysnhu/s/"],
-      ["SNHU Email", "https://outlook.office.com/mail/"],
-      ["DAT-430", "https://learn.snhu.edu/d2l/home/1163878"],
+      ["AWS Console", "https://843413486435.signin.aws.amazon.com/console"],
+      [
+        "Udemy Course",
+        "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03",
+      ],
+      ["Cheat Sheets", "https://tutorialsdojo.com/aws-cheat-sheets"],
+      [
+        "Cloud Quest",
+        "https://explore.skillbuilder.aws/learn/course/7636/cloud-quest",
+      ],
+      [
+        "Tutorials Dojo",
+        "https://portal.tutorialsdojo.com/courses/aws-certified-solutions-architect-associate-practice-exams",
+      ],
+      [
+        "Practice Exam",
+        "https://explore.skillbuilder.aws/learn/course/14048/aws-certified-solutions-architect-professional-official-practice-exam-sap-c02-english",
+      ],
     ],
   },
 
