@@ -41,9 +41,8 @@ export default [
       ["Santander", "https://www.santander.com/en/home"],
       ["Capital One", "https://www.capitalone.com/"],
       ["Chase", "https://www.chase.com/"],
-      ["American Express", "https://www.americanexpress.com"][
-        ("Macys", "https://www.macys.com/account/signin")
-      ],
+      ["American Express", "https://www.americanexpress.com"],
+      ["Macys", "https://www.macys.com/account/signin"],
     ],
   },
   {
