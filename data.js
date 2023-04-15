@@ -15,18 +15,18 @@ export default [
     list: [
       ["AWS Console", "https://843413486435.signin.aws.amazon.com/console"],
       [
-        "Udemy Course",
+        "Ultimate Guide",
         "https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03",
-      ],
-      ["Cheat Sheets", "https://tutorialsdojo.com/aws-cheat-sheets"],
-      [
-        "Cloud Quest",
-        "https://explore.skillbuilder.aws/learn/course/7636/cloud-quest",
       ],
       [
         "Tutorials Dojo",
         "https://portal.tutorialsdojo.com/courses/aws-certified-solutions-architect-associate-practice-exams",
       ],
+      [
+        "Cloud Quest",
+        "https://explore.skillbuilder.aws/learn/course/7636/cloud-quest",
+      ],
+      ["Cheat Sheets", "https://tutorialsdojo.com/aws-cheat-sheets"],
       [
         "Practice Exam",
         "https://explore.skillbuilder.aws/learn/course/14048/aws-certified-solutions-architect-professional-official-practice-exam-sap-c02-english",
@@ -41,6 +41,9 @@ export default [
       ["Santander", "https://www.santander.com/en/home"],
       ["Capital One", "https://www.capitalone.com/"],
       ["Chase", "https://www.chase.com/"],
+      ["American Express", "https://www.americanexpress.com"][
+        ("Macys", "https://www.macys.com/account/signin")
+      ],
     ],
   },
   {
@@ -71,8 +74,9 @@ export default [
     list: [
       ["QuillBot", "https://quillbot.com/"],
       ["Desmos", "https://www.desmos.com/calculator"],
-      ["Box Shadows", "https://getcssscan.com/css-box-shadow-examples"],
+      ["Find My Phone", "https://smartthingsfind.samsung.com"],
       ["Diagram Maker", "https://app.diagrams.net/"],
+      ["Box Shadows", "https://getcssscan.com/css-box-shadow-examples"],
       ["Gradients", "https://uigradients.com"],
     ],
   },
