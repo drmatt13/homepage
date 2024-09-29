@@ -41,7 +41,7 @@ export default function Home() {
         <meta name="description" content="Matts homepage" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="relative w-full">
+      <div className="relative w-full min-h-screen">
         <div className="container max-w-3xl mx-auto">
           <div className="w-full flex justify-center pt-8">
             <form onSubmit={handleSubmit}>
